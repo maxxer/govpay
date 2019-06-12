@@ -943,9 +943,12 @@
 		</xsd:schema>
 	</wsdl:types>
 	
+	<wsdl:message name="gpHeader">
+		<wsdl:part name="metaInfo" element="com:metaInfo" />
+	</wsdl:message>
+	
 	<wsdl:message name="gpGeneraIuv">
 		<wsdl:part name="bodyrichiesta" element="app:gpGeneraIuv" />
-		<wsdl:part name="metaInfo" element="com:metaInfo" />
 	</wsdl:message>
 	
 	<wsdl:message name="gpGeneraIuvResponse">
@@ -962,7 +965,6 @@
 	 
 	<wsdl:message name="gpCaricaVersamento">
 		<wsdl:part name="bodyrichiesta" element="app:gpCaricaVersamento" />
-		<wsdl:part name="metaInfo" element="com:metaInfo" />
 	</wsdl:message>
 
 	<wsdl:message name="gpCaricaVersamentoResponse">
@@ -1061,8 +1063,8 @@
 		<wsdl:operation name="gpGeneraIuv">
 			<soap:operation soapAction="gpGeneraIuv" />
 			<wsdl:input>
-				<soap:header message="tns:gpGeneraIuv" part="metaInfo" use="literal" />
-				<soap:body use="literal" />
+				<soap:header message="tns:gpHeader" part="metaInfo" use="literal" />
+				<soap:body message="tns:gpGeneraIuv" part="bodyrichiesta" use="literal" />
 			</wsdl:input>
 			<wsdl:output><soap:body use="literal" /></wsdl:output>
 		</wsdl:operation>
@@ -1076,8 +1078,8 @@
 		<wsdl:operation name="gpCaricaVersamento">
 			<soap:operation soapAction="gpCaricaVersamento" />
 			<wsdl:input>
-				<soap:header message="tns:gpCaricaVersamento" part="metaInfo" use="literal" />
-				<soap:body use="literal" />
+				<soap:header message="tns:gpHeader" part="metaInfo" use="literal" />
+				<soap:body message="tns:gpCaricaVersamento" part="bodyrichiesta" use="literal" />
 			</wsdl:input>
 			<wsdl:output><soap:body use="literal" /></wsdl:output>
 		</wsdl:operation>

@@ -1078,6 +1078,10 @@
 		</xsd:schema>
 
 	</wsdl:types>
+	
+	<wsdl:message name="gpHeader">
+		<wsdl:part name="metaInfo" element="com:metaInfo" />
+	</wsdl:message>	
 
 	<wsdl:message name="gpChiediListaPsp">
 		<wsdl:part name="bodyrichiesta" element="prt:gpChiediListaPsp" />
@@ -1089,7 +1093,6 @@
 
 	<wsdl:message name="gpAvviaTransazionePagamento">
 		<wsdl:part name="bodyrichiesta" element="prt:gpAvviaTransazionePagamento" />
-		<wsdl:part name="metaInfo" element="com:metaInfo" />
 	</wsdl:message>
 
 	<wsdl:message name="gpAvviaTransazionePagamentoResponse">
@@ -1194,7 +1197,7 @@
 		<wsdl:operation name="gpAvviaTransazionePagamento">
 			<soap:operation soapAction="gpAvviaTransazionePagamento" />
 			<wsdl:input>
-				<soap:header message="tns:gpAvviaTransazionePagamento" part="metaInfo" use="literal" />
+				<soap:header message="tns:gpHeader" part="metaInfo" use="literal" />
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output>
