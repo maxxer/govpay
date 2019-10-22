@@ -24,6 +24,7 @@ import it.govpay.backoffice.v1.beans.PatchOp;
 import it.govpay.backoffice.v1.beans.PatchOp.OpEnum;
 import it.govpay.backoffice.v1.beans.converter.PagamentiPortaleConverter;
 import it.govpay.backoffice.v1.beans.converter.PatchOpConverter;
+import it.govpay.core.autorizzazione.AuthorizationManager;
 import it.govpay.core.beans.JSONSerializable;
 import it.govpay.core.dao.pagamenti.PagamentiPortaleDAO;
 import it.govpay.core.dao.pagamenti.dto.LeggiPagamentoPortaleDTO;
@@ -114,6 +115,13 @@ public class PagamentiController extends BaseController {
 			if(idSessionePortale != null)
 				listaPagamentiPortaleDTO.setIdSessionePortale(idSessionePortale);
 			// INIT DAO
+			
+			// Autorizzazione sui domini
+			List<String> codDomini = AuthorizationManager.getDominiAutorizzati(user);
+			if(codDomini == null) {
+				throw AuthorizationManager.toNotAuthorizedExceptionNessunDominioAutorizzato(user);
+			}
+			listaPagamentiPortaleDTO.setCodDomini(codDomini);
 			
 			PagamentiPortaleDAO pagamentiPortaleDAO = new PagamentiPortaleDAO();
 			

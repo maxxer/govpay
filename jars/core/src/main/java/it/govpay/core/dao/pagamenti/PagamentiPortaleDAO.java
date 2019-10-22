@@ -573,6 +573,7 @@ public class PagamentiPortaleDAO extends BaseDAO {
 			filter.setFilterSortList(listaPagamentiPortaleDTO.getFieldSortList());
 			filter.setCfCittadino(listaPagamentiPortaleDTO.getCfCittadino()); 
 			filter.setCodApplicazione(listaPagamentiPortaleDTO.getCodApplicazione()); 
+			filter.setCodDomini(listaPagamentiPortaleDTO.getCodDomini());
 
 			long count = pagamentiPortaleBD.count(filter);
 
