@@ -90,3 +90,8 @@ Examples:
 | tracciatoCsv.responseHeader | responseHeader | null |
 | tracciatoCsv.freemarkerRequest | freemarkerRequest | null |
 | tracciatoCsv.freemarkerResponse | freemarkerResponse | null |
+| appIO | appIO | null |
+| appIO.url | url | null |
+| appIO.message | message | null |
+| appIO.message.subject | subject | null |
+| appIO.message.body | body | null |

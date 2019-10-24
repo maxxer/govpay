@@ -65,5 +65,8 @@
 	},
 	"hardening": {
 		"abilitato": false
+	},
+	"appio": {
+		"abilitato": false
 	}
 }
