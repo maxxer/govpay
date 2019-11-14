@@ -12,7 +12,7 @@ CREATE TABLE eventi
 	tipo_evento VARCHAR(70),
 	sottotipo_evento VARCHAR(35),
 	-- Precisione ai millisecondi supportata dalla versione 5.6.4, se si utilizza una versione precedente non usare il suffisso '(3)'
-	data TIMESTAMP(3) DEFAULT 0,
+	data TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3),
 	intervallo BIGINT,
 	esito VARCHAR(4),
 	sottotipo_esito VARCHAR(35),
@@ -324,7 +324,6 @@ CREATE VIEW v_eventi_vers AS (
                LEFT JOIN versamenti ON versamenti.id = pag_port_versamenti.id_versamento
                LEFT JOIN applicazioni ON versamenti.id_applicazione = applicazioni.id
          );
-
 
 -- 19/09/2019 Perfezionamento configurazione standard
 UPDATE configurazione set valore = '{"apiEnte":{"letture":{"log":"SEMPRE","dump":"SOLO_ERRORE"},"scritture":{"log":"SEMPRE","dump":"SOLO_ERRORE"}},"apiPagamento":{"letture":{"log":"MAI","dump":"MAI"},"scritture":{"log":"SEMPRE","dump":"SOLO_ERRORE"}},"apiRagioneria":{"letture":{"log":"MAI","dump":"MAI"},"scritture":{"log":"SEMPRE","dump":"SOLO_ERRORE"}},"apiBackoffice":{"letture":{"log":"MAI","dump":"MAI"},"scritture":{"log":"SEMPRE","dump":"SEMPRE"}},"apiPagoPA":{"letture":{"log":"SEMPRE","dump":"SEMPRE"},"scritture":{"log":"SEMPRE","dump":"SEMPRE"}},"apiPendenze":{"letture":{"log":"MAI","dump":"MAI"},"scritture":{"log":"SEMPRE","dump":"SOLO_ERRORE"}}}' where nome='giornale_eventi';

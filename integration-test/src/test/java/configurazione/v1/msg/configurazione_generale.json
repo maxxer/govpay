@@ -63,10 +63,31 @@
 			}
 		}
 	},
+	"tracciatoCsv": {
+        "tipo": "freemarker", 
+   		"intestazione": "..intestazione..",	
+        "richiesta": "..base64 freemarker..",
+        "risposta": "..base64 freemarker.."
+    },
 	"hardening": {
 		"abilitato": false
 	},
 	"appio": {
 		"abilitato": false
+	},
+	"mailBatch": {
+		"abilitato": false
+	},
+	"mailPromemoria": {
+		"tipo": "freemarker",
+		"oggetto": "..base64 freemarker..",
+		"messaggio": "..base64 freemarker..",
+		"allegaPdf": true
+	},
+	"mailRicevuta": {
+		"tipo": "freemarker",
+		"oggetto": "..base64 freemarker..",
+		"messaggio": "..base64 freemarker..",
+		"allegaPdf": true
 	}
 }

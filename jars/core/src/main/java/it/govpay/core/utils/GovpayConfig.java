@@ -80,7 +80,7 @@ public class GovpayConfig {
 	private TipiDatabase mLogDBType;
 	private boolean mLogOnLog4j, mLogOnDB, mLogSql, pddAuthEnable;
 	private boolean batchOn;
-	private Integer clusterId;
+	private String clusterId;
 	private long timeoutBatch;
 
 	private boolean batchCaricamentoTracciati;
@@ -120,9 +120,6 @@ public class GovpayConfig {
 	private String codTipoVersamentoPendenzeLibere;
 	private String codTipoVersamentoPendenzeNonCensite;
 	private boolean censimentoTipiVersamentoSconosciutiEnabled;
-	
-	private boolean invioPromemoriaEnabled;
-	private Properties invioPromemoriaProperties;
 	
 	private Properties corsProperties;
 	
@@ -185,8 +182,6 @@ public class GovpayConfig {
 		this.scritturaDiagnosticiFileEnabled = false;
 		this.scritturaDumpFileEnabled = false;
 		this.giornaleEventiEnabled = true;
-		this.invioPromemoriaEnabled = false;
-		this.invioPromemoriaProperties = new Properties();
 		this.corsProperties = new Properties();
 		this.templateProspettoRiscossioni = null;
 		
@@ -365,11 +360,7 @@ public class GovpayConfig {
 
 			String clusterIdString = getProperty("it.govpay.clusterId", this.props, false, log);
 			if(clusterIdString != null) {
-				try{
-					this.clusterId = Integer.parseInt(clusterIdString);
-				} catch(NumberFormatException nfe) {
-					log.warn("La proprieta \"it.govpay.clusterId\" deve essere valorizzata con un numero. Proprieta ignorata");
-				}
+				this.clusterId = clusterIdString.trim();
 			}
 
 			String timeoutBatchString = getProperty("it.govpay.timeoutBatch", this.props, false, log);
@@ -513,14 +504,6 @@ public class GovpayConfig {
 			String giornaleEventiEnabledString = getProperty("it.govpay.context.giornaleEventi.enabled", this.props, false, log);
 			if(giornaleEventiEnabledString != null && Boolean.valueOf(giornaleEventiEnabledString))
 				this.giornaleEventiEnabled = true;
-			
-			
-			String invioPromemoriaString = getProperty("it.govpay.invioPromemoria.enabled", this.props, false, log);
-			if(invioPromemoriaString != null && Boolean.valueOf(invioPromemoriaString))
-				this.invioPromemoriaEnabled = true;
-			
-			Map<String, String> propertiesPromemoria = getProperties("it.govpay.invioPromemoria.mailServer.",this.props, false, log);
-			this.invioPromemoriaProperties.putAll(propertiesPromemoria);
 			
 			String defaultCustomIuvGeneratorClass = getProperty("it.govpay.defaultCustomIuvGenerator.class", this.props, false, log);
 			if(defaultCustomIuvGeneratorClass != null && !defaultCustomIuvGeneratorClass.isEmpty()) {
@@ -703,7 +686,7 @@ public class GovpayConfig {
 		return this.batchOn;
 	}
 
-	public Integer getClusterId(){
+	public String getClusterId(){
 		return this.clusterId;
 	}
 
@@ -825,14 +808,6 @@ public class GovpayConfig {
 
 	public boolean isGiornaleEventiEnabled() {
 		return giornaleEventiEnabled;
-	}
-
-	public boolean isInvioPromemoriaEnabled() {
-		return invioPromemoriaEnabled;
-	}
-
-	public Properties getInvioPromemoriaProperties() {
-		return invioPromemoriaProperties;
 	}
 
 	public CustomIuv getDefaultCustomIuvGenerator() {
