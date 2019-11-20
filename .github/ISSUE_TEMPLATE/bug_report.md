@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Descrizione del Bug**
-Descrizione del bug o errore chiara e coincisa.
+Descrizione del bug o errore chiara e concisa.
 
 **Come riprodurlo:**
 Indicare i passi per riprodurre il bug.
